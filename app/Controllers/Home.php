@@ -11,12 +11,14 @@ class Home extends BaseController
         $sensorModel = model(SensorModel::class);
         $data = [
             'sensors' => $sensorModel->getAll(),
+            'judul' => 'dashboard',
         ];
         return view('dashboard/index', $data);
     }
 
     public function tambah()
     {
+
         helper('text');
         $key = random_string('alnum', 5);
         $sensorModel = model(SensorModel::class);

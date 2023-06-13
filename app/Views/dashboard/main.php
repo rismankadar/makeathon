@@ -29,7 +29,8 @@
                                     </div>
                                     <div class="modal-footer">
                                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="submit" class="btn btn-primary">Save changes</button></form>
+                                          <button type="submit" class="btn btn-primary">Tambah</button>
+                                          </form>
                                     </div>
                               </div>
                         </div>
@@ -45,7 +46,7 @@
                                     <div class="card-body">
                                           <h5 class="card-title"><?= $card->sensor_name; ?></h5>
                                           <p class="card-text"><?= $card->sensor_key; ?></p>
-                                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                                          <a href="<?= base_url('/detail' . '/' . $card->sensor_key); ?>" class="btn btn-primary">Detail</a>
                                     </div>
                               </div>
                         </div>

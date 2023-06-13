@@ -4,37 +4,37 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class SensorModel extends Model
+class valueModel extends Model
 {
       protected $db, $builder;
-      protected $table      = 'sensor';
-      protected $primaryKey = 'sensor_id';
+      protected $table      = 'sensor_value';
+      protected $primaryKey = 'value_id';
 
       protected $useAutoIncrement = true;
 
       protected $returnType     = 'object';
       protected $useSoftDeletes = true;
 
-      protected $allowedFields = ['sensor_key', 'sensor_name', 'sensor_deskripsi', 'sensor_status'];
+      protected $allowedFields = ['value_key', 'value_nilai'];
 
       public function __construct()
       {
             $this->db = \Config\Database::connect();
-            $this->builder = $this->db->table('sensor');
+            $this->builder = $this->db->table('sensor_value');
       }
 
-      public function getAll()
+      public function getAll($key)
       {
             $this->builder->select('');
-            $this->builder->where('sensor_status', '1');
+            $this->builder->where('value_key', $key);
             $query = $this->builder->get();
             return $query->getResult();
       }
 
-      public function getSensor($key)
+      public function getvalue($key)
       {
             $this->builder->select('');
-            $this->builder->where('sensor_key', $key);
+            $this->builder->where('value_key', $key);
             $query = $this->builder->get();
             return $query->getResult();
       }
