@@ -9,7 +9,9 @@ class Home extends BaseController
     public function index()
     {
         $sensorModel = model(SensorModel::class);
-        $data = ['sensor' => $sensorModel->getAll(),];
+        $data = [
+            'sensor' => $sensorModel->getAll(),
+        ];
         return view('dashboard/index', $data);
     }
 }
