@@ -1,14 +1,18 @@
 <div class="container-fluid">
       <div class="row">
-            <div class="col">
 
-                  <div class="card text-center mb-3" style="width: 18rem;">
-                        <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+            <?php if (!empty($sensors)) {
+                  foreach ($sensors as $card) : ?><div class="col-auto">
+                              <div class="card text-center mb-3" style="width: 18rem;">
+                                    <div class="card-body">
+                                          <h5 class="card-title"><?= $card->sensor_name; ?></h5>
+                                          <p class="card-text"><?= $card->sensor_key; ?></p>
+                                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                              </div>
                         </div>
-                  </div>
-            </div>
+            <?php endforeach;
+            } ?>
+
       </div>
 </div>
