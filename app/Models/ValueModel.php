@@ -4,38 +4,53 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class valueModel extends Model
+class ValueModel extends Model
 {
-      protected $db, $builder;
+      protected $sensor;
       protected $table      = 'sensor_value';
       protected $primaryKey = 'value_id';
-
       protected $useAutoIncrement = true;
-
       protected $returnType     = 'object';
       protected $useSoftDeletes = true;
-
       protected $allowedFields = ['value_key', 'value_nilai'];
-
       public function __construct()
       {
-            $this->db = \Config\Database::connect();
-            $this->builder = $this->db->table('sensor_value');
+            $this->sensor = db_connect()->table('sensor_value');
       }
-
-      public function getAll($key)
+      public function getAllData($key)
       {
-            $this->builder->select('');
-            $this->builder->where('value_key', $key);
-            $query = $this->builder->get();
+            $this->sensor->select();
+            $this->sensor->where('value_key', $key);
+            $query = $this->sensor->get();
             return $query->getResult();
       }
-
-      public function getvalue($key)
+      public function getMax($key)
       {
-            $this->builder->select('');
-            $this->builder->where('value_key', $key);
-            $query = $this->builder->get();
+            $this->sensor->select('');
+            $this->sensor->where('value_key', $key);
+            $this->sensor->orderBy('value_id', 'DESC');
+            $this->sensor->limit(1);
+
+            $query = $this->sensor->get();
+            return $query->getResult();
+      }
+      public function getValueLabel($key)
+      {
+            $this->sensor->select('');
+            $this->sensor->where('value_key', $key);
+            $this->sensor->orderBy('value_id', 'DESC');
+            $this->sensor->limit(10);
+
+            $query = $this->sensor->get();
+            return $query->getResult();
+      }
+      public function getValueNilai($key)
+      {
+            $this->sensor->select('value_nilai');
+            $this->sensor->where('value_key', $key);
+            $this->sensor->orderBy('value_id', 'ASC');
+            $this->sensor->limit(10);
+            $query = $this->sensor->get();
             return $query->getResult();
       }
 }

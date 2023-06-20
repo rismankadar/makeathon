@@ -30,9 +30,25 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
-$routes->post('tambah', 'Home::tambah');
-$routes->get('/detail/(:segment)', 'Detail::index/$1');
-$routes->get('/getTable/(:segment)', 'Detail::table/$1');
+$routes->get('/updateCard/(:segment)', 'Home::getData/$1');
+$routes->get('/getTable/(:segment)', 'Detail::getTable/$1');
+$routes->get('/getTableAdjust/(:segment)', 'Detail::getTableAdjust/$1');
+$routes->get('/detail/(:segment)', 'Detail::detail/$1');
+$routes->get('/getChart/(:segment)', 'Detail::chart/$1');
+$routes->get('/adjustValue/(:segment)', 'Detail::adjustValue/$1');
+$routes->post('/tambah', 'Home::tambah');
+$routes->post('/test_form', 'Test::test');
+$routes->post('/test2', 'Test::test2');
+$routes->post('/setValueAdjust', 'Detail::setValueAdjust');
+
+$routes->post('ajax/request', 'AjaxController::handleRequest');
+$routes->post('chart/update', 'ChartController::updateData');
+$routes->get('/chart/update', 'ChartController::updateData');
+$routes->get('/test', 'Test::index');
+$routes->get('/getchartdata', 'Test::getchartdata');
+$routes->get('/export/(:segment)', 'Test::export/$1');
+
+$routes->post('/sensor', 'Test::create');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

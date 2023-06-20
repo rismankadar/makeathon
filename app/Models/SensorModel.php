@@ -6,36 +6,28 @@ use CodeIgniter\Model;
 
 class SensorModel extends Model
 {
-      protected $db, $builder;
+      protected $sensor;
       protected $table      = 'sensor';
-      protected $primaryKey = 'sensor_id';
-
+      protected $primaryKey = 'id';
       protected $useAutoIncrement = true;
-
       protected $returnType     = 'object';
       protected $useSoftDeletes = true;
-
-      protected $allowedFields = ['sensor_key', 'sensor_name', 'sensor_deskripsi', 'sensor_status'];
-
+      protected $allowedFields = ['sensor_name', 'sensor_deskripsi', 'sensor_key'];
       public function __construct()
       {
-            $this->db = \Config\Database::connect();
-            $this->builder = $this->db->table('sensor');
+            $this->sensor = db_connect()->table('sensor');
       }
-
-      public function getAll()
-      {
-            $this->builder->select('');
-            $this->builder->where('sensor_status', '1');
-            $query = $this->builder->get();
-            return $query->getResult();
-      }
-
       public function getSensor($key)
       {
-            $this->builder->select('');
-            $this->builder->where('sensor_key', $key);
-            $query = $this->builder->get();
+            $this->sensor->select();
+            $this->sensor->where('sensor_key', $key);
+            $query = $this->sensor->get();
+            return $query->getResult();
+      }
+      public function getSensorCard()
+      {
+            $this->sensor->select();
+            $query = $this->sensor->get();
             return $query->getResult();
       }
 }

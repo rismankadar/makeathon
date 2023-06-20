@@ -1,10 +1,9 @@
-<?= $this->extend('templates/templates') ?>
+<?= $this->extend('template/template') ?>
 
 <?= $this->section('content') ?>
-    <?= $this->include('templates/sidebar'); ?>
-    <?= $this->include('templates/header'); ?>
+<?= $this->include('template/sidebar') ?>
+<?= $this->include('template/header') ?>
+<?= $this->include('dashboard/main') ?>
+<?= $this->include('template/footer') ?>
 
-    <?= $this->include('dashboard/main'); ?>
-    
-    <?= $this->include('templates/footer'); ?>
 <?= $this->endSection() ?>
